@@ -1,3 +1,26 @@
+import json
+
+# Open the JSONL file for reading
+with open('test_data_10meetings.jsonl', 'r') as jsonl_file:
+    for i, line in enumerate(jsonl_file, start=1):
+        try:
+            # Parse the JSON object from each line
+            data = json.loads(line)
+
+            # Extract the "text" key from the JSON object
+            text = data.get('text', '')
+
+            # Define the filename for the text file
+            filename = f'urdu_output/{i:03d}.txt'
+
+            # Write the extracted text to the text file
+            with open(filename, 'w') as text_file:
+                text_file.write(text)
+
+        except json.JSONDecodeError as e:
+            print(f"Error decoding JSON in line {i}: {e}")
+        except Exception as e:
+            print(f"Error processing line {i}: {e}")
 # import json
 
 # # Input JSONL file name
@@ -47,3 +70,20 @@ with open('test_data_10meetings.jsonl', 'r') as jsonl_file:
             print(f"Error decoding JSON in line {i}: {e}")
         except Exception as e:
             print(f"Error processing line {i}: {e}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
